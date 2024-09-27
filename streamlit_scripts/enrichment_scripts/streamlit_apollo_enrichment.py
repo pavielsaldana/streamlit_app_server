@@ -3,10 +3,7 @@ import sseclient
 import streamlit as st
 import uuid
 
-import os
-import sys
-sys.path.append(os.path.abspath('../streamlit_scripts/utils'))
-from streamlit_scripts.utils import base_request_url, generate_task_id, key_dict
+from streamlit_scripts.streamlit_utils.py import base_request_url, generate_task_id, key_dict
 
 
 st.title("Apollo enrichment scripts")

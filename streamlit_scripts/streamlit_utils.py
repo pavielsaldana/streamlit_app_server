@@ -1,3 +1,4 @@
+import streamlit as st
 import uuid
 
 base_request_url = "https://2e6b-38-25-16-227.ngrok-free.app"

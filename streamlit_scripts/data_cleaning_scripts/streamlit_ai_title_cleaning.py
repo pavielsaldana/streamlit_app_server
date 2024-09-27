@@ -5,6 +5,9 @@ import streamlit as st
 import time
 import uuid
 
+import os
+import sys
+sys.path.append(os.path.abspath('../streamlit_scripts/utils'))
 from streamlit_scripts.utils import base_request_url, generate_task_id, key_dict, OPENAI_API_KEY
 
 

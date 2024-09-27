@@ -3,10 +3,7 @@ import sseclient
 import streamlit as st
 import uuid
 
-import os
-import sys
-sys.path.append(os.path.abspath('../streamlit_scripts/streamlit_utils'))
-from streamlit_scripts.streamlit_utils.py import base_request_url, generate_task_id, zenrowsApiKey, OWLER_PC_cookie, key_dict
+from streamlit_scripts.streamlit_utils import base_request_url, generate_task_id, zenrowsApiKey, OWLER_PC_cookie, key_dict
 
 
 st.title("Owler revenue scripts")

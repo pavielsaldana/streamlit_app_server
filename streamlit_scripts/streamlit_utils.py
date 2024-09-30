@@ -11,4 +11,4 @@ key_dict["private_key"] = key_dict["private_key"].replace("\\n", "\n")
 
 OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]["value"]
 zenrowsApiKey = st.secrets["ZENROWS_API_KEY"]["value"]
-OWLER_PC_cookie = st.secrets["OWLER_PC_cookie"]["value"]
+OWLER_PC_cookie = st.secrets["OWLER_PC_COOKIE"]["value"]

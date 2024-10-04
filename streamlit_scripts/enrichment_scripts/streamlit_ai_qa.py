@@ -86,7 +86,7 @@ if option == "Onfleet (General)":
     - If it's a Moving company: Moving. brief explanation.
     - If it doesn’t fit any category: Neither. brief explanation.
     """
-        verticals_input = (
+    verticals_input = (
     "LastMile: \"Last Mile\", \"Last Mile Delivery\", \"Last-Mile\", \"Final Mile\", \"Final-Mile\"\n"
     "SupplyChain: \"Supply Chain\", \"Logistics\", \"Logistic\"\n"
     "WhiteGlove: \"White glove\", \"White-glove\"\n"

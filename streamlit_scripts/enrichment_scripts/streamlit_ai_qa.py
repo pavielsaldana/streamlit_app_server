@@ -97,7 +97,6 @@ if option == "Onfleet (General)":
     "Moving: \"Move\", \"Moving\", \"Moving Storage\"\n"
     "Pallets: \"Pallets\", \"Pallet\"\n"
     "Materials: \"Oil\", \"Gas\", \"Sand\", \"Dirt\", \"Tandem axel tractor\", \"Water\", \"Bulk liquids\", \"Liquids\", \"Oversized\", \"Heavy Haul\", \"Auto Transport\", \"Chemical\", \"ISO tank\", \"SaaS\", \"Software as a Service\"\n"
-    "Error: \"Error\", \"Timeout\", \"403\"\n"
     "Discard: \"Non-Asset\", \"Non Asset\", \"Broker\", \"Brokerage\"\n"
     "Keywords: \"Last mile\", \"Last-mile\", \"Courier\", \"Final mile\", \"Final-mile\", \"E-commerce delivery\", \"Ecommerce delivery\", \"White glove\", \"White-glove\", \"Home delivery\"\n"
     "Delivery: \"Shipping\", \"Delivery\"\n"

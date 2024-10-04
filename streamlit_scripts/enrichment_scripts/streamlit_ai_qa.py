@@ -24,7 +24,7 @@ st.title("QA with Searching Keyword")
 option = st.selectbox(
     "Select a Client ICP",
     ("Select Client ICP", "New ICP Fit QA",
-     "Headlight Solutions (Chemical)", "Headlight Solutions (Steel)")
+     "Headlight Solutions (Chemical)", "Headlight Solutions (Steel)", "Onfleet (General)")
 )
 
 if option == "New ICP Fit QA":
@@ -64,6 +64,44 @@ if option == "Headlight Solutions (Steel)":
         "Partner: \"DHL\", \"UPS\", \"USPS\", \"United Parcel Service\", \"Fedex\"\n"
         "Association: \"Association\""
     )
+
+if option == "Onfleet (General)":
+    keywords_input= "last mile,delivery,courier,parcel delivery,final mile,package delivery,white glove,shipping,Home delivery,next day delivery"
+    prompt_input= """
+    Determine if the company falls under one of the following categories: Transport Logistics, Courier, Moving Services, or Delivery Operating.
+
+    - **Transport Logistics**: These companies specialize in delivering goods directly from transportation hubs or distribution centers to the end user (either businesses or consumers), often handling heavier packages (over 150 pounds) and using terms like 3PL, LTL, 'last mile' or 'white glove' delivery. Exclude companies involved in oil, gas, liquid transportation, brokerage, or those not asset-based.
+
+    - **Courier**: Courier companies primarily deliver packages under 150 pounds from warehouses, distribution centers, or retail stores directly to consumers using smaller vehicles such as cars or vans. They are not required to use specific delivery partners such as DHL, UPS, or USPS. Keywords include 'courier', 'express delivery', 'e-commerce delivery', 'home delivery', 'final mile', and 'last-mile delivery'.
+
+    - **Moving Services**: Moving companies handle residential or commercial relocations, helping customers transport belongings from one location to another. Focus on terms like 'moving', 'relocation', or 'residential/commercial moves'.
+
+    - **Delivery Operating**: Companies that offer delivery in their products but do not strictly fit the previous categories. For example, an e-commerce business that offers delivery or shipping in the products they offer.
+
+    - **Neither**: If the company does not fit any of the above categories, classify it as "Neither" and explain why it doesn’t meet the criteria.
+
+    Respond in the following format:
+    - If it's a Transport Logistics company: Transport Logistics. brief explanation.
+    - If it's a Courier: Courier. brief explanation.
+    - If it's a Moving company: Moving. brief explanation.
+    - If it doesn’t fit any category: Neither. brief explanation.
+    """
+        verticals_input = (
+    "LastMile: \"Last Mile\", \"Last Mile Delivery\", \"Last-Mile\", \"Final Mile\", \"Final-Mile\"\n"
+    "SupplyChain: \"Supply Chain\", \"Logistics\", \"Logistic\"\n"
+    "WhiteGlove: \"White glove\", \"White-glove\"\n"
+    "Bike: \"Bike\", \"Cargo bike\", \"Bike delivery\"\n"
+    "Express: \"Express\", \"Express delivery\", \"Express Cargo\"\n"
+    "Partner: \"DHL\", \"UPS\", \"USPS\", \"United Parcel Service\"\n"
+    "Luxury: \"Luxury\", \"Limousine\"\n"
+    "Moving: \"Move\", \"Moving\", \"Moving Storage\"\n"
+    "Pallets: \"Pallets\", \"Pallet\"\n"
+    "Materials: \"Oil\", \"Gas\", \"Sand\", \"Dirt\", \"Tandem axel tractor\", \"Water\", \"Bulk liquids\", \"Liquids\", \"Oversized\", \"Heavy Haul\", \"Auto Transport\", \"Chemical\", \"ISO tank\", \"SaaS\", \"Software as a Service\"\n"
+    "Error: \"Error\", \"Timeout\", \"403\"\n"
+    "Discard: \"Non-Asset\", \"Non Asset\", \"Broker\", \"Brokerage\"\n"
+    "Keywords: \"Last mile\", \"Last-mile\", \"Courier\", \"Final mile\", \"Final-mile\", \"E-commerce delivery\", \"Ecommerce delivery\", \"White glove\", \"White-glove\", \"Home delivery\"\n"
+    "Delivery: \"Shipping\", \"Delivery\"\n"
+)
 
 if option != "Select Client ICP":
     st.write("Use the IA QA tool when you have a list of domains that you need to do QA to check if the companies are fit with the ICP, you can also check if there are mention of certain keywords in the webpages.")

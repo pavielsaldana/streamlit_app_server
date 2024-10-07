@@ -24,7 +24,7 @@ st.title("QA with Searching Keyword")
 option = st.selectbox(
     "Select a Client ICP",
     ("Select Client ICP", "New ICP Fit QA",
-     "Headlight Solutions (Chemical)", "Headlight Solutions (Steel)", "Onfleet (General)")
+     "Headlight Solutions (Chemical)", "Headlight Solutions (Steel)", "Onfleet (General)", "Kalungi ABM")
 )
 
 if option == "New ICP Fit QA":
@@ -32,6 +32,21 @@ if option == "New ICP Fit QA":
     prompt_input = "Assess if the company is a XXXXXX by searching for terms or phrases indicating this kind of services  including but not limited to XXXXXX. Respond in the following manner: Yes. Provide a brief explanation (no more than 300 characters) on why it qualifies. No. Provide a brief explanation (no more than 300 characters) on why it does not qualify. Maybe. If the information is ambiguous or insufficient, briefly explain (no more than 300 characters) why it's not possible to determine."
     verticals_input = ("Vertical1: \"Keyword1\", \"Keyword2\", \"Keyword3...\"\n"
                        "Vertical2: \"Keyword1\", \"Keyword2\", \"Keyword3...\"")
+
+if option == "Kalungi ABM":
+    keywords_input= "SaaS, Software as a Service, Software, Solution, Platform,e-commerce,ecommerce,e commerce"
+    prompt_input= "Assess if the company offers any Software as a solution (SaaS); you can determine this by searching terms or phrases like solution, platform, book a demo, Cloud-based or references to a software solution offered to a customer. Respond in the following manner: Yes. Provide a brief explanation (no more than 300 characters) on why it qualifies. No. Provide a brief explanation (no more than 300 characters) on why it does not qualify. Maybe. If the information is ambiguous or insufficient, briefly explain (no more than 300 characters) why it's not possible to determine."
+    verticals_input= ("Demo: \"Demo\", \"Contact for Sales\", \"Contact Sales\"\n"
+                      "Software: \"Software\"\n"
+                      "SaaS: \"Software as a Service\", \"SaaS\"\n"
+                      "B2B: \"B2B\", \"Business to Business\"\n"
+                      "Enterprise: \"Enterprise\"\n"
+                      "Consulting: \"Consultors\", \"Consulting\", \"Audit\"\n"
+                      "Platform_Migration: \"Platform Migration\", \"Integration\"\n"
+                      "Development: \"App Development\", \"Software Development\"\n"
+                      "Marketing: \"Marketing Agency\"\n"
+                      "IT_Service: \"IT Service\"\n"
+                      "AI: \"AI\, \"Artificial Intelligence\"")
 
 if option == "Headlight Solutions (Chemical)":
     keywords_input = "Delivery, Shipping, Chemical"

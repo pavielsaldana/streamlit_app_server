@@ -39,9 +39,146 @@ if option != "Select Client ICP":
         sales_navigator_query_3 = st.text_input("Sales Navigator query 3", "")
 
 if option != "Select Client ICP":
-    if st.button("Fist step"):
-        print("a")
-    if st.button("Second step"):
-        print("a")
-    if st.button("Third step"):
-        print("a")
+    if not spreadsheet_url:
+            st.error("Please fill spreadsheet URL.")
+    if not sheet_name:
+            st.error("Please fill sheet name.")
+    if not column_name:
+            st.error("Please fill column name.")
+    if not li_at:
+            st.error("Please fill LinkedIn authentication cookie.")
+    else:
+        if st.button("Fist step"):
+            try:
+                task_id = generate_task_id()
+                payload = {
+                    "spreadsheet_url": spreadsheet_url,
+                    "sheet_name": sheet_name,
+                    "column_name": column_name,
+                    "li_at": li_at,
+                    "sales_navigator_query_1": sales_navigator_query_1,
+                    "sales_navigator_query_2": sales_navigator_query_2,
+                    "sales_navigator_query_3": sales_navigator_query_3,
+                    "key_dict": key_dict,
+                    "task_id": task_id,
+                }
+                response = requests.post(
+                    f"{base_request_url}/linkedin_scripts/list_building_workflow/first_workflow_part", json=payload)
+                if response.status_code == 200:
+                        st.success(f"Task started. Task ID: {task_id}")
+                        sse_url = f"{base_request_url}/progress_stream/{task_id}"
+                        progress_bar = st.progress(0)
+                        messages = sseclient.SSEClient(sse_url)
+                        for msg in messages:
+                            if msg.data and msg.data.strip().isdigit():
+                                progress = int(msg.data)
+                                progress_bar.progress(progress)
+                                if progress == 100:
+                                    time.sleep(15)
+                                    st.success("First step completed!")
+                                    break
+                            else:
+                                st.error(f"Invalid progress data: {msg.data}")
+            except Exception as e:
+                st.error(f"An error occurred: {e}")
+                st.exception(e)
+        if st.button("Second step"):
+            try:
+                task_id = generate_task_id()
+                spreadsheet_url, sheet_name, key_dict, li_at
+                payload = {
+                    "spreadsheet_url": spreadsheet_url,
+                    "sheet_name": sheet_name,
+                    "li_at": li_at,
+                    "key_dict": key_dict,
+                    "task_id": task_id,
+                }
+                response = requests.post(
+                    f"{base_request_url}/linkedin_scripts/list_building_workflow/second_workflow_part", json=payload)
+                if response.status_code == 200:
+                        st.success(f"Task started. Task ID: {task_id}")
+                        sse_url = f"{base_request_url}/progress_stream/{task_id}"
+                        progress_bar = st.progress(0)
+                        messages = sseclient.SSEClient(sse_url)
+                        for msg in messages:
+                            if msg.data and msg.data.strip().isdigit():
+                                progress = int(msg.data)
+                                progress_bar.progress(progress)
+                                if progress == 100:
+                                    st.success("Second step completed!")
+                                    break
+                            else:
+                                st.error(f"Invalid progress data: {msg.data}")                
+                if response.status_code == 200:
+                    st.success(f"Task started. Task ID: {task_id}")
+                    first_sse_url = f"{base_request_url}/progress_stream/first_{task_id}"
+                    second_sse_url = f"{base_request_url}/progress_stream/second_{task_id}"
+                    third_sse_url = f"{base_request_url}/progress_stream/third_{task_id}"
+                    if sales_navigator_query_1 != "":
+                        first_sse_url = f"{base_request_url}/progress_stream/first_{task_id}"
+                        first_progress_bar = st.progress(0)
+                    if sales_navigator_query_2 != "":
+                        second_sse_url = f"{base_request_url}/progress_stream/second_{task_id}"
+                        second_progress_bar = st.progress(0)
+                    if sales_navigator_query_3 != "":
+                        third_sse_url = f"{base_request_url}/progress_stream/third_{task_id}"
+                        third_progress_bar = st.progress(0)                    
+                    search_messages = sseclient.SSEClient(search_sse_url)
+                    if sales_navigator_query_1 != "":
+                        for msg in search_messages:
+                            if msg.data and msg.data.strip().isdigit():
+                                progress = int(msg.data)
+                                first_progress_bar.progress(progress)
+                                if progress == 100:
+                                    st.success("Query 1 completed!")
+                                    break
+                            else:
+                                st.error(
+                                    f"Invalid progress data received: {msg.data}")
+                    if sales_navigator_query_2 != "":
+                        for msg in search_messages:
+                            if msg.data and msg.data.strip().isdigit():
+                                progress = int(msg.data)
+                                second_progress_bar.progress(progress)
+                                if progress == 100:
+                                    st.success("Query 2 completed!")
+                                    break
+                            else:
+                                st.error(
+                                    f"Invalid progress data received: {msg.data}")
+                    if sales_navigator_query_3 != "":
+                        for msg in search_messages:
+                            if msg.data and msg.data.strip().isdigit():
+                                progress = int(msg.data)
+                                third_progress_bar.progress(progress)
+                                if progress == 100:
+                                    st.success("Query 3 completed!")
+                                    break
+                        else:
+                            st.error(
+                                f"Invalid progress data received: {msg.data}")
+                else:
+                    st.error(
+                        f"Error starting task: {response.json().get('message')}")
+            except Exception as e:
+                st.error(f"An error occurred: {e}")
+                st.exception(e)
+        if st.button("Third step"):
+            try:
+                task_id = generate_task_id()
+                payload = {
+                    "spreadsheet_url": spreadsheet_url,
+                    "sheet_name": sheet_name,
+                    "li_at": li_at,
+                    "key_dict": key_dict,
+                    "task_id": task_id,
+                }
+                response = requests.post(
+                    f"{base_request_url}/linkedin_scripts/list_building_workflow/third_workflow_part", json=payload)
+                if response.status_code == 200:
+                    st.success(f"Task started. Task ID: {task_id}")
+                    time.sleep(15)
+                    st.success("Third step completed!")
+            except Exception as e:
+                st.error(f"An error occurred: {e}")
+                st.exception(e)

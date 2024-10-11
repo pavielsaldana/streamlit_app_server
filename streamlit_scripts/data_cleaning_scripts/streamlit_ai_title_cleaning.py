@@ -12,7 +12,7 @@ st.title("Title Cleaning")
 
 option = st.selectbox(
     "Select a Client ICP",
-    ("Select Scraper Type", "Onfleet (DSP)", "Onfleet (Resellers)")
+    ("Select Client ICP", "Onfleet (DSP)", "Onfleet (Resellers)")
 )
 
 if option == "Onfleet (DSP)":

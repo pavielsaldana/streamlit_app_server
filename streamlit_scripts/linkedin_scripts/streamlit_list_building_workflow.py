@@ -85,7 +85,6 @@ if option != "Select Client ICP":
         if st.button("Second step"):
             try:
                 task_id = generate_task_id()
-                spreadsheet_url, sheet_name, key_dict, li_at
                 payload = {
                     "spreadsheet_url": spreadsheet_url,
                     "sheet_name": sheet_name,
@@ -108,10 +107,10 @@ if option != "Select Client ICP":
                         second_progress_bar = st.progress(0)
                     if sales_navigator_query_3 != "":
                         third_sse_url = f"{base_request_url}/progress_stream/third_{task_id}"
-                        third_progress_bar = st.progress(0)                    
-                    search_messages = sseclient.SSEClient(search_sse_url)
+                        third_progress_bar = st.progress(0)
                     if sales_navigator_query_1 != "":
-                        for msg in search_messages:
+                        first_search_messages = sseclient.SSEClient(first_sse_url)
+                        for msg in first_search_messages:
                             if msg.data and msg.data.strip().isdigit():
                                 progress = int(msg.data)
                                 first_progress_bar.progress(progress)
@@ -119,10 +118,10 @@ if option != "Select Client ICP":
                                     st.success("Query 1 completed!")
                                     break
                             else:
-                                st.error(
-                                    f"Invalid progress data received: {msg.data}")
+                                st.error(f"Invalid progress data received for Query 1: {msg.data}")
                     if sales_navigator_query_2 != "":
-                        for msg in search_messages:
+                        second_search_messages = sseclient.SSEClient(second_sse_url)
+                        for msg in second_search_messages:
                             if msg.data and msg.data.strip().isdigit():
                                 progress = int(msg.data)
                                 second_progress_bar.progress(progress)
@@ -130,19 +129,18 @@ if option != "Select Client ICP":
                                     st.success("Query 2 completed!")
                                     break
                             else:
-                                st.error(
-                                    f"Invalid progress data received: {msg.data}")
+                                st.error(f"Invalid progress data received for Query 2: {msg.data}")
                     if sales_navigator_query_3 != "":
-                        for msg in search_messages:
+                        third_search_messages = sseclient.SSEClient(third_sse_url)
+                        for msg in third_search_messages:
                             if msg.data and msg.data.strip().isdigit():
                                 progress = int(msg.data)
                                 third_progress_bar.progress(progress)
                                 if progress == 100:
                                     st.success("Query 3 completed!")
                                     break
-                        else:
-                            st.error(
-                                f"Invalid progress data received: {msg.data}")
+                            else:
+                                st.error(f"Invalid progress data received for Query 3: {msg.data}")
                 else:
                     st.error(
                         f"Error starting task: {response.json().get('message')}")

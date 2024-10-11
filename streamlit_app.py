@@ -54,7 +54,7 @@ if check_password():
     apollo_enrichment_page = st.Page("streamlit_scripts/enrichment_scripts/streamlit_apollo_enrichment.py",
                                      title="Apollo enrichment",
                                      icon=":material/checklist_rtl:")
-    list_building_workflow_page = st.Page("streamlit_scripts/linkedin_scripts/streamlit_list_building_workflow",
+    list_building_workflow_page = st.Page("streamlit_scripts/linkedin_scripts/streamlit_list_building_workflow.py",
                                         title="List Building Workflow",
                                         icon=":material/face:")
     pg = st.navigation(

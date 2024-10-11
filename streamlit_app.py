@@ -54,10 +54,13 @@ if check_password():
     apollo_enrichment_page = st.Page("streamlit_scripts/enrichment_scripts/streamlit_apollo_enrichment.py",
                                      title="Apollo enrichment",
                                      icon=":material/checklist_rtl:")
+    list_building_workflow_page = st.Page("streamlit_scripts/linkedin_scripts/streamlit_list_building_workflow",
+                                        title="List Building Workflow",
+                                        icon=":material/face:")
     pg = st.navigation(
         {
             "Welcome": [welcome_page,],
-            "LinkedIn scripts": [linkedin_scraping_page, linkedin_search_page, linkedin_outreach_page,],
+            "LinkedIn scripts": [linkedin_scraping_page, linkedin_search_page, linkedin_outreach_page, list_building_workflow_page],
             "Enrichment scripts": [ai_qa_page, owler_revenue_page, company_linkedin_url_search_using_serper_page, apollo_enrichment_page,],
             "Data cleaning": [ai_title_cleaning_page,],
         }

@@ -63,7 +63,7 @@ if option != "Select Client ICP":
                     "task_id": task_id,
                 }
                 response = requests.post(
-                    f"{base_request_url}/linkedin_scripts/list_building_workflow/first_workflow_part", json=payload)
+                    f"{base_request_url}/linkedin_scripts/linkedin_workflow/first_workflow_part", json=payload)
                 if response.status_code == 200:
                         st.success(f"Task started. Task ID: {task_id}")
                         sse_url = f"{base_request_url}/progress_stream/{task_id}"
@@ -94,7 +94,7 @@ if option != "Select Client ICP":
                     "task_id": task_id,
                 }
                 response = requests.post(
-                    f"{base_request_url}/linkedin_scripts/list_building_workflow/second_workflow_part", json=payload)
+                    f"{base_request_url}/linkedin_scripts/linkedin_workflow/second_workflow_part", json=payload)
                 if response.status_code == 200:
                         st.success(f"Task started. Task ID: {task_id}")
                         sse_url = f"{base_request_url}/progress_stream/{task_id}"
@@ -174,7 +174,7 @@ if option != "Select Client ICP":
                     "task_id": task_id,
                 }
                 response = requests.post(
-                    f"{base_request_url}/linkedin_scripts/list_building_workflow/third_workflow_part", json=payload)
+                    f"{base_request_url}/linkedin_scripts/linkedin_workflow/third_workflow_part", json=payload)
                 if response.status_code == 200:
                     st.success(f"Task started. Task ID: {task_id}")
                     time.sleep(15)

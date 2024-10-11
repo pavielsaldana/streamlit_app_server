@@ -65,20 +65,20 @@ if option != "Select Client ICP":
                 response = requests.post(
                     f"{base_request_url}/linkedin_scripts/linkedin_workflow/first_workflow_part", json=payload)
                 if response.status_code == 200:
-                        st.success(f"Task started. Task ID: {task_id}")
-                        sse_url = f"{base_request_url}/progress_stream/{task_id}"
-                        progress_bar = st.progress(0)
-                        messages = sseclient.SSEClient(sse_url)
-                        for msg in messages:
-                            if msg.data and msg.data.strip().isdigit():
-                                progress = int(msg.data)
-                                progress_bar.progress(progress)
-                                if progress == 100:
-                                    time.sleep(15)
-                                    st.success("First step completed!")
-                                    break
-                            else:
-                                st.error(f"Invalid progress data: {msg.data}")
+                    st.success(f"Task started. Task ID: {task_id}")
+                    sse_url = f"{base_request_url}/progress_stream/{task_id}"
+                    progress_bar = st.progress(0)
+                    messages = sseclient.SSEClient(sse_url)
+                    for msg in messages:
+                        if msg.data and msg.data.strip().isdigit():
+                            progress = int(msg.data)
+                            progress_bar.progress(progress)
+                            if progress == 100:
+                                time.sleep(15)
+                                st.success("First step completed!")
+                                break
+                        else:
+                            st.error(f"Invalid progress data: {msg.data}")
             except Exception as e:
                 st.error(f"An error occurred: {e}")
                 st.exception(e)
@@ -96,19 +96,19 @@ if option != "Select Client ICP":
                 response = requests.post(
                     f"{base_request_url}/linkedin_scripts/linkedin_workflow/second_workflow_part", json=payload)
                 if response.status_code == 200:
-                        st.success(f"Task started. Task ID: {task_id}")
-                        sse_url = f"{base_request_url}/progress_stream/{task_id}"
-                        progress_bar = st.progress(0)
-                        messages = sseclient.SSEClient(sse_url)
-                        for msg in messages:
-                            if msg.data and msg.data.strip().isdigit():
-                                progress = int(msg.data)
-                                progress_bar.progress(progress)
-                                if progress == 100:
-                                    st.success("Second step completed!")
-                                    break
-                            else:
-                                st.error(f"Invalid progress data: {msg.data}")                
+                    st.success(f"Task started. Task ID: {task_id}")
+                    sse_url = f"{base_request_url}/progress_stream/{task_id}"
+                    progress_bar = st.progress(0)
+                    messages = sseclient.SSEClient(sse_url)
+                    for msg in messages:
+                        if msg.data and msg.data.strip().isdigit():
+                            progress = int(msg.data)
+                            progress_bar.progress(progress)
+                            if progress == 100:
+                                st.success("Second step completed!")
+                                break
+                        else:
+                            st.error(f"Invalid progress data: {msg.data}")                
                 if response.status_code == 200:
                     st.success(f"Task started. Task ID: {task_id}")
                     first_sse_url = f"{base_request_url}/progress_stream/first_{task_id}"

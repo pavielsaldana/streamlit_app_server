@@ -94,21 +94,7 @@ if option != "Select Client ICP":
                     "task_id": task_id,
                 }
                 response = requests.post(
-                    f"{base_request_url}/linkedin_scripts/linkedin_workflow/second_workflow_part", json=payload)
-                if response.status_code == 200:
-                    st.success(f"Task started. Task ID: {task_id}")
-                    sse_url = f"{base_request_url}/progress_stream/{task_id}"
-                    progress_bar = st.progress(0)
-                    messages = sseclient.SSEClient(sse_url)
-                    for msg in messages:
-                        if msg.data and msg.data.strip().isdigit():
-                            progress = int(msg.data)
-                            progress_bar.progress(progress)
-                            if progress == 100:
-                                st.success("Second step completed!")
-                                break
-                        else:
-                            st.error(f"Invalid progress data: {msg.data}")                
+                    f"{base_request_url}/linkedin_scripts/linkedin_workflow/second_workflow_part", json=payload)             
                 if response.status_code == 200:
                     st.success(f"Task started. Task ID: {task_id}")
                     first_sse_url = f"{base_request_url}/progress_stream/first_{task_id}"
@@ -125,8 +111,7 @@ if option != "Select Client ICP":
                         third_progress_bar = st.progress(0)                    
                     search_messages = sseclient.SSEClient(search_sse_url)
                     if sales_navigator_query_1 != "":
-                        first_search_messages = sseclient.SSEClient(first_sse_url)
-                        for msg in first_search_messages:
+                        for msg in search_messages:
                             if msg.data and msg.data.strip().isdigit():
                                 progress = int(msg.data)
                                 first_progress_bar.progress(progress)
@@ -134,10 +119,10 @@ if option != "Select Client ICP":
                                     st.success("Query 1 completed!")
                                     break
                             else:
-                                st.error(f"Invalid progress data received for Query 1: {msg.data}")
+                                st.error(
+                                    f"Invalid progress data received: {msg.data}")
                     if sales_navigator_query_2 != "":
-                        second_search_messages = sseclient.SSEClient(second_sse_url)
-                        for msg in second_search_messages:
+                        for msg in search_messages:
                             if msg.data and msg.data.strip().isdigit():
                                 progress = int(msg.data)
                                 second_progress_bar.progress(progress)
@@ -145,18 +130,19 @@ if option != "Select Client ICP":
                                     st.success("Query 2 completed!")
                                     break
                             else:
-                                st.error(f"Invalid progress data received for Query 2: {msg.data}")
+                                st.error(
+                                    f"Invalid progress data received: {msg.data}")
                     if sales_navigator_query_3 != "":
-                        third_search_messages = sseclient.SSEClient(third_sse_url)
-                        for msg in third_search_messages:
+                        for msg in search_messages:
                             if msg.data and msg.data.strip().isdigit():
                                 progress = int(msg.data)
                                 third_progress_bar.progress(progress)
                                 if progress == 100:
                                     st.success("Query 3 completed!")
                                     break
-                            else:
-                                st.error(f"Invalid progress data received for Query 3: {msg.data}")
+                        else:
+                            st.error(
+                                f"Invalid progress data received: {msg.data}")
                 else:
                     st.error(
                         f"Error starting task: {response.json().get('message')}")

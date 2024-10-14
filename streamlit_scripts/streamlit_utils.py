@@ -1,7 +1,7 @@
 import streamlit as st
 import uuid
 
-base_request_url = "https://40c7-207-188-8-20.ngrok-free.app"
+base_request_url = "https://ab10-207-188-8-20.ngrok-free.app"
 
 def generate_task_id():
     return str(uuid.uuid4())

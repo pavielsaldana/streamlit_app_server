@@ -29,11 +29,7 @@ option = st.selectbox(
     "Headlight Solutions (Steel)",
     "Onfleet (General)",
     "Kalungi ABM",
-    "Onfleet (Groceries/Food Delivery Review)",
-    "Onfleet (Grocery Retailer Delivery Review)",
-    "Onfleet (Prepared Meals Delivery Review)",
-    "Onfleet (Retail Delivery Review)",
-    "Onfleet (E-commerce Delivery Review)",
+    "Onfleet (Groceries/Food Delivery Review)","Onfleet (Grocery Retailer Delivery Review)","Onfleet (Prepared Meals Delivery Review)","Onfleet (Retail Delivery Review)","Onfleet (E-commerce Delivery Review)",
     )
 )
 

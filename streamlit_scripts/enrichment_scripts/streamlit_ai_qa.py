@@ -23,8 +23,18 @@ st.title("QA with Searching Keyword")
 
 option = st.selectbox(
     "Select a Client ICP",
-    ("Select Client ICP", "New ICP Fit QA",
-     "Headlight Solutions (Chemical)", "Headlight Solutions (Steel)", "Onfleet (General)", "Kalungi ABM")
+    ("Select Client ICP",
+    "New ICP Fit QA",
+    "Headlight Solutions (Chemical)",
+    "Headlight Solutions (Steel)",
+    "Onfleet (General)",
+    "Kalungi ABM",
+    "Onfleet (Groceries/Food Delivery Review)",
+    "Onfleet (Grocery Retailer Delivery Review)",
+    "Onfleet (Prepared Meals Delivery Review)",
+    "Onfleet (Retail Delivery Review)",
+    "Onfleet (E-commerce Delivery Review)",
+    )
 )
 
 if option == "New ICP Fit QA":
@@ -116,6 +126,41 @@ if option == "Onfleet (General)":
     "Keywords: \"Last mile\", \"Last-mile\", \"Courier\", \"Final mile\", \"Final-mile\", \"E-commerce delivery\", \"Ecommerce delivery\", \"White glove\", \"White-glove\", \"Home delivery\"\n"
     "Delivery: \"Shipping\", \"Delivery\"\n"
 )
+
+if option == "Onfleet (Groceries/Food Delivery Review)":
+    keywords_input= "grocery delivery, fresh produce delivery, fruit delivery, vegetable delivery, home delivery, buy online"
+    prompt_input= "Assess if the company offers delivery services for fresh groceries like fruits, vegetables, or other fresh food items directly to the final consumer. Respond in the following manner: Yes. Provide a brief explanation (no more than 300 characters) on why it qualifies. No. Provide a brief explanation (no more than 300 characters) on why it does not qualify. Maybe. If the information is ambiguous or insufficient, briefly explain (no more than 300 characters) why it's not possible to determine."
+    verticals_input= ("Groceries: \"Fresh produce\", \"Fruits\", \"Vegetables\", \"Food delivery\"\n"
+                      "Home_Delivery: \"Delivered to your door\", \"Home delivery\"\n"
+                      "Online_Purchase: \"Order online\", \"Buy online\"\n")
+
+if option == "Onfleet (Grocery Retailer Delivery Review)":
+    keywords_input= "grocery delivery to home, supermarket delivery, shop online, store pickup, home delivery, buy groceries online"
+    prompt_input= "Assess if the company is a grocery retailer with physical stores that offer delivery services to the final consumer. Respond in the following manner: Yes. Provide a brief explanation (no more than 300 characters) on why it qualifies. No. Provide a brief explanation (no more than 300 characters) on why it does not qualify. Maybe. If the information is ambiguous or insufficient, briefly explain (no more than 300 characters) why it's not possible to determine."
+    verticals_input= ("Supermarkets: \"Supermarket\", \"Physical stores\", \"In-store pickup\"\n"
+                      "Home_Delivery: \"Delivered to your door\", \"Home delivery\"\n"
+                      "Online_Purchase: \"Order online\", \"Shop online\"\n")
+
+if option == "Onfleet (Prepared Meals Delivery Review)":
+    keywords_input= "meal delivery to home, packaged food delivery, ready-to-eat delivery, prepared meal kit, buy meals online, home delivery"
+    prompt_input= "Assess if the company offers delivery services for packaged, ready-to-eat meals to the final consumer. Respond in the following manner: Yes. Provide a brief explanation (no more than 300 characters) on why it qualifies. No. Provide a brief explanation (no more than 300 characters) on why it does not qualify. Maybe. If the information is ambiguous or insufficient, briefly explain (no more than 300 characters) why it's not possible to determine."
+    verticals_input= ("Prepared_Meals: \"Ready-to-eat meals\", \"Packaged meals\", \"Meal delivery\"\n"
+                      "Home_Delivery: \"Delivered to your door\", \"Home delivery\"\n"
+                      "Online_Purchase: \"Order online\", \"Buy meals online\"\n")
+
+if option == "Onfleet (Retail Delivery Review)":
+    keywords_input= "delivery to home, click and collect, store pickup, shipping to home, buy online, home delivery"
+    prompt_input= "Assess if the retail company has physical stores and offers delivery services to the final consumer. Respond in the following manner: Yes. Provide a brief explanation (no more than 300 characters) on why it qualifies. No. Provide a brief explanation (no more than 300 characters) on why it does not qualify. Maybe. If the information is ambiguous or insufficient, briefly explain (no more than 300 characters) why it's not possible to determine."
+    verticals_input= ("Retail: \"Physical stores\", \"In-store pickup\", \"Click and collect\"\n"
+                      "Home_Delivery: \"Delivered to your door\", \"Home delivery\"\n"
+                      "Online_Purchase: \"Order online\", \"Buy online\"\n")
+
+if option == "Onfleet (E-commerce Delivery Review)":
+    keywords_input= "delivery to home, online shipping, e-commerce store, free shipping to home, buy online, direct-to-consumer"
+    prompt_input= "Assess if the e-commerce company offers delivery services directly to the final consumer, operating exclusively online. Respond in the following manner: Yes. Provide a brief explanation (no more than 300 characters) on why it qualifies. No. Provide a brief explanation (no more than 300 characters) on why it does not qualify. Maybe. If the information is ambiguous or insufficient, briefly explain (no more than 300 characters) why it's not possible to determine."
+    verticals_input= ("E-commerce: \"Online store\", \"Exclusively online\"\n"
+                      "Home_Delivery: \"Delivered to your door\", \"Home delivery\"\n"
+                      "Online_Purchase: \"Order online\", \"Buy online\"\n")
 
 if option != "Select Client ICP":
     st.write("Use the IA QA tool when you have a list of domains that you need to do QA to check if the companies are fit with the ICP, you can also check if there are mention of certain keywords in the webpages.")

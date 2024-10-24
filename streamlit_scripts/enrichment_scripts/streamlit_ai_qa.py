@@ -27,6 +27,7 @@ option = st.selectbox(
     "New ICP Fit QA",
     "Headlight Solutions (Chemical)",
     "Headlight Solutions (Steel)",
+     "Onfleet (Groceries/Food/Prepared Meals/Delivery Review)",
     "Onfleet (General)",
     "Kalungi ABM",
     "Onfleet (Groceries/Food Delivery Review)",
@@ -89,6 +90,36 @@ if option == "Headlight Solutions (Steel)":
         "Partner: \"DHL\", \"UPS\", \"USPS\", \"United Parcel Service\", \"Fedex\"\n"
         "Association: \"Association\""
     )
+
+if option == "Onfleet (Groceries/Food/Prepared Meals/Delivery Review)":
+    keywords_input = "grocery delivery, fresh produce delivery, fruit delivery, vegetable delivery, home delivery, buy online, supermarket delivery, store pickup, meal delivery, ready-to-eat delivery, packaged meals, e-commerce store, buy online, raw meat, cheese"
+    prompt_input = """
+    Assess if the company falls into one of the following categories: Groceries Delivery, Grocery Retailer Delivery, Prepared Meals Delivery, Retail Delivery, or E-commerce Delivery.
+
+    - **Groceries Delivery**: The company offers delivery services for fresh groceries and unprepared food items such as fruits, vegetables, raw meat, cheese, or other fresh food directly to the final consumer.
+    - **Grocery Retailer Delivery**: The company is a grocery retailer with physical stores that offer delivery services to the final consumer.
+    - **Prepared Meals Delivery**: The company offers delivery services for packaged, ready-to-eat meals to the final consumer.
+    - **Retail Delivery**: The company has physical stores and offers delivery services to the final consumer, either through store pickup or home delivery.
+    - **E-commerce Delivery**: The company operates exclusively online and offers delivery services directly to the final consumer.
+
+    Respond in the following manner:
+    - If it's a Groceries Delivery company: Groceries Delivery. Provide a brief explanation (no more than 300 characters) on why it qualifies.
+    - If it's a Grocery Retailer Delivery company: Grocery Retailer Delivery. Provide a brief explanation (no more than 300 characters) on why it qualifies.
+    - If it's a Prepared Meals Delivery company: Prepared Meals Delivery. Provide a brief explanation (no more than 300 characters) on why it qualifies.
+    - If it's a Retail Delivery company: Retail Delivery. Provide a brief explanation (no more than 300 characters) on why it qualifies.
+    - If it's an E-commerce Delivery company: E-commerce Delivery. Provide a brief explanation (no more than 300 characters) on why it qualifies.
+    - If it doesn’t fit any category: Neither. Briefly explain (no more than 300 characters) why it's not possible to determine.
+    """
+    verticals_input = (
+        "Groceries: \"Fresh produce\", \"Fruits\", \"Vegetables\", \"Raw meat\", \"Cheese\", \"Food delivery\"\n"
+        "Supermarkets: \"Supermarket\", \"Physical stores\", \"In-store pickup\"\n"
+        "Prepared_Meals: \"Ready-to-eat meals\", \"Packaged meals\", \"Meal delivery\"\n"
+        "Retail: \"Physical stores\", \"In-store pickup\", \"Click and collect\"\n"
+        "E-commerce: \"Online store\", \"Exclusively online\"\n"
+        "Home_Delivery: \"Delivered to your door\",\"Delivery\", \"Home delivery\"\n"
+        "Online_Purchase: \"Order online\", \"Buy online\"\n"
+    )
+
 
 if option == "Onfleet (General)":
     keywords_input= "last mile,delivery,courier,parcel delivery,final mile,package delivery,white glove,shipping,Home delivery,next day delivery"

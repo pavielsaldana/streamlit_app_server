@@ -27,7 +27,7 @@ option = st.selectbox(
     "New ICP Fit QA",
     "Headlight Solutions (Chemical)",
     "Headlight Solutions (Steel)",
-     "Onfleet (Groceries/Food/Prepared Meals/Delivery Review)",
+    "Onfleet (Groceries/Food/Prepared Meals/Delivery Review)",
     "Onfleet (General)",
     "Kalungi ABM",
     "Onfleet (Groceries/Food Delivery Review)",
